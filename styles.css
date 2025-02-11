@@ -1,0 +1,132 @@
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Arial', sans-serif;
+    background: radial-gradient(circle, #003b36, #001f1c);
+    color: #ffffff;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 90vh;
+    overflow: hidden;
+  }
+  
+  .navbar {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100%;
+    max-width: 1080px;  /* Set a maximum width of 1080px */
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 30px;  /* Increased vertical padding */
+    background: rgba(0, 0, 0, 0.3);
+  }
+  
+  .navbar .logo {
+    font-size: 2em;  /* Increase the size of "OHC Labs" */
+  }
+
+  .navbar a {
+    color: white;
+    text-decoration: none;
+    margin: 0 15px;
+  }
+  
+  .navbar .login {
+    background: #a6f6f1;
+    color: #003b36;
+    padding: 8px 16px;
+    border-radius: 20px;
+    font-weight: bold;
+  }
+  
+  .content {
+    text-align: center;
+    max-width: 800px;
+    padding: 20px;
+  }
+  
+  h1 {
+    font-size: 4em;
+    margin: 0 0 20px;
+  }
+  
+  p {
+    font-size: 1em;
+    margin: 0 0 30px;
+    color: #b0c4c7;
+  }
+  
+  .buttons button {
+    background: #a6f6f1;
+    color: #003b36;
+    border: none;
+    padding: 12px 24px;
+    margin: 0 10px;
+    border-radius: 20px;
+    font-size: 1em;
+    cursor: pointer;
+    transition: background 0.3s;
+  }
+  
+  .buttons button:hover {
+    background: #8de2dd;
+  }
+  
+  .wrapper {
+    display: inline-flex;
+    align-items: center;
+    font-size: 40px;
+  }
+  
+  .static {
+    color: #ffffff;
+    margin: 0 10px;
+  }
+  
+  .dynamic {
+    position: relative;
+    width: 280px;
+    height: 150px;
+    overflow: hidden;
+  }
+  
+  .wheel {
+    position: relative;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    height: 150px;
+  }
+  
+  /* Using transforms for smoother, GPU‐accelerated animation */
+  .wheel li {
+    position: absolute;
+    left: 0;
+    width: 100%;
+    height: 50px;
+    line-height: 50px;
+    text-align: center;
+    font-weight: bold;
+    transition: transform 500ms ease, opacity 500ms ease, filter 500ms ease;
+  }
+  
+  .incoming {
+    opacity: 0.5;
+    filter: brightness(0.8);
+  }
+  
+  .current {
+    opacity: 1;
+    filter: brightness(1);
+  }
+  
+  .outgoing {
+    opacity: 0.5;
+    filter: brightness(0.8);
+  }
+  
