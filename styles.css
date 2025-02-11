@@ -30,6 +30,7 @@ body {
   
   .navbar .logo {
     font-size: 2em;  /* Logo text size */
+    padding: 5px 20px;
   }
   
   .navbar a {
@@ -189,11 +190,10 @@ body {
     }
   }
   
-  @media (max-width: 480px) {
+  @media (max-width: 480px) or (max-height: 480px) {
     /* Adjust layout to prevent overlapping the navbar */
     body {
       /* Switch from centered flex layout to a block layout starting below the navbar */
-      display: block;
       height: auto;
       padding-top: 70px;  /* Add extra top padding to accommodate the navbar height */
     }
@@ -257,3 +257,9 @@ body {
     }
   }
   
+  @media (max-width: 385px) {
+    .wrapper {
+      font-size: 18px;
+    }
+
+  }
