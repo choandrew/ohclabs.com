@@ -1,3 +1,4 @@
+/* Base styles (Desktop-first) */
 body {
     margin: 0;
     padding: 0;
@@ -8,7 +9,7 @@ body {
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    height: 90vh;
+    height: 100vh;
     overflow: hidden;
   }
   
@@ -18,18 +19,19 @@ body {
     left: 50%;
     transform: translateX(-50%);
     width: 100%;
-    max-width: 1080px;  /* Set a maximum width of 1080px */
+    max-width: 1080px;  /* Maximum width for desktop */
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 10px 30px;  /* Increased vertical padding */
+    padding: 10px 30px;  /* Vertical & horizontal padding */
     background: rgba(0, 0, 0, 0.3);
+    z-index: 1000; /* Ensure the navbar is on top */
   }
   
   .navbar .logo {
-    font-size: 2em;  /* Increase the size of "OHC Labs" */
+    font-size: 2em;  /* Logo text size */
   }
-
+  
   .navbar a {
     color: white;
     text-decoration: none;
@@ -81,6 +83,7 @@ body {
     display: inline-flex;
     align-items: center;
     font-size: 40px;
+    margin-top: 60px;
   }
   
   .static {
@@ -100,15 +103,13 @@ body {
     list-style: none;
     margin: 0;
     padding: 0;
-    height: 150px;
   }
   
-  /* Using transforms for smoother, GPU‐accelerated animation */
+  /* Transitions for smoother, GPU‐accelerated animation */
   .wheel li {
     position: absolute;
     left: 0;
     width: 100%;
-    height: 50px;
     line-height: 50px;
     text-align: center;
     font-weight: bold;
@@ -128,5 +129,132 @@ body {
   .outgoing {
     opacity: 0.5;
     filter: brightness(0.8);
+  }
+  
+  /* Responsive Styles */
+  @media (max-width: 768px) or (max-height: 768px) {
+    body {
+      /* Optionally adjust body padding if needed */
+      padding: 20px;
+    }
+  
+    .navbar {
+      padding: 10px 20px;
+    }
+  
+    .navbar .logo {
+      font-size: 1.5em;
+    }
+  
+    .content {
+      padding: 10px;
+    }
+  
+    h1 {
+      font-size: 2.5em;
+      margin-bottom: 15px;
+    }
+  
+    p {
+      font-size: 0.9em;
+      margin-bottom: 20px;
+    }
+  
+    .buttons button {
+      padding: 10px 20px;
+      font-size: 0.9em;
+      margin: 0 5px;
+    }
+  
+    .wrapper {
+      font-size: 24px;
+    }
+
+    .static {
+        margin: 0 -10px;
+    }
+  
+    .dynamic {
+      width: 200px;
+      height: 140px;
+    }
+  
+    .wheel {
+      height: 10px;
+    }
+  
+    .wheel li {
+      height: 300px;
+      line-height: 40px;
+    }
+  }
+  
+  @media (max-width: 480px) {
+    /* Adjust layout to prevent overlapping the navbar */
+    body {
+      /* Switch from centered flex layout to a block layout starting below the navbar */
+      display: block;
+      height: auto;
+      padding-top: 70px;  /* Add extra top padding to accommodate the navbar height */
+    }
+  
+    .navbar {
+      flex-direction: column;
+      padding: 10px;
+    }
+  
+    .navbar .logo {
+      margin-bottom: 10px;
+    }
+  
+    .navbar a {
+      margin: 5px 0;
+    }
+  
+    .content {
+      padding: 10px 5px;
+      margin-top: 20px;  /* Extra margin to ensure content starts well below the navbar */
+    }
+  
+    /* Reduce h1 size further to keep text in bounds */
+    h1 {
+      font-size: 1.8em;
+      margin: 0 0 10px;
+    }
+  
+    p {
+      font-size: 0.85em;
+    }
+  
+    .buttons button {
+      padding: 8px 16px;
+      font-size: 0.85em;
+      margin: 5px;
+    }
+  
+    .wrapper {
+      font-size: 22px;
+      align-items: center;
+      margin-left: 35px;
+    }
+  
+    .dynamic {
+      width: 170px;
+      height: 160px;
+      align-items: center;
+    }
+  
+    .static {
+        margin: 0 0px;
+    }
+
+    .wheel {
+      height: 10px;
+    }
+  
+    .wheel li {
+      height: 160px;
+      line-height: 61px;
+    }
   }
   
