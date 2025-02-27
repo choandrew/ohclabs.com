@@ -9,7 +9,6 @@
   <link rel="stylesheet" href="css/meet_the_team.css">
   <link rel="stylesheet" href="css/contact.css">
   <script src="js/text-rotate.js"></script>
-  <script src="js/send_email.js"></script>
 </head>
 <body>
   <div class="navbar">
@@ -25,7 +24,7 @@
     <p>
       Entering international markets today is complicated, but it doesn’t need to be.<br>
       We are a full-service consultancy that manages every aspect of your global growth.<br>
-      Let us simplify your expansion journey.
+      <b>Let us simplify your expansion journey.</b>
     </p>
     <div class="buttons">
       <button><a href="#team">Meet the Team</a></button>
@@ -82,6 +81,7 @@
 
   <section class="contact-section" id="contact">
     <h2>We’re ready to drive your growth.</h2>
+    <p>Email hello@ohclabs.com or use the input form below.</p>
     <div class="contact-container">
       <form action="#" method="POST">
         <div class="form-group">
@@ -102,7 +102,7 @@
           <textarea id="message" name="message" rows="5" placeholder="Your message..." required></textarea>
         </div>
   
-        <a href="mailto:hello@ohclabs.com" class="submit-button">Send</a>
+        <button type="submit" class="submit-button" id="send-button">Send</button>
 
       </form>
     </div>
