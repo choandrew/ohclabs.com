@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" href="icons/favicon.ico" type="image/x-icon">
+  <title>OHC Labs - Login</title>
+  <link rel="stylesheet" href="css/styles.css">
+  <style>
+    .login-container {
+      width: 300px;
+      margin: auto;
+      text-align: center;
+    }
+    form {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    label, input {
+      width: 100%;
+      text-align: left;
+      margin-bottom: 10px;
+    }
+    input {
+      padding: 8px;
+      box-sizing: border-box;
+    }
+    button {
+      width: 100%;
+      padding: 8px;
+      margin-top: 10px;
+    }
+    .error {
+      color: red;
+      font-size: 12px;
+      display: none;
+    }
+  </style>
+  <script>
+    document.addEventListener("DOMContentLoaded", function() {
+      document.querySelector("form").addEventListener("submit", function(event) {
+        event.preventDefault(); // Prevent form submission
+        let email = document.getElementById("email");
+        let password = document.getElementById("password");
+        let emailError = document.getElementById("email-error");
+        let passwordError = document.getElementById("password-error");
+        let valid = true;
+        
+        if (!email.value.trim()) {
+          emailError.style.display = "block";
+          valid = false;
+        } else {
+          emailError.style.display = "none";
+        }
+        
+        if (!password.value.trim()) {
+          passwordError.style.display = "block";
+          valid = false;
+        } else {
+          passwordError.style.display = "none";
+        }
+        
+        if (!valid) {
+          return;
+        }
+
+        alert("Incorrect login.");
+      });
+    });
+  </script>
+
+</head>
+<body>
+    <div class="navbar">
+        <div class="logo"><a href="/#"><strong>OHC</strong><em> Labs</em></a></div>
+        <div>
+          <a href="/#contact" class="navbar_button">Contact</a>
+          <a href="login.html" class="navbar_button">Log In</a>
+        </div>
+    </div>    
+
+  <div class="login-container">
+    <h2>Login</h2>
+    <form action="/login" method="POST">
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email" required>
+        <span class="error" id="email-error">Email is required</span>
+        
+        <label for="password">Password:</label>
+        <input type="password" id="password" name="password" required>
+        <span class="error" id="password-error">Password is required</span>
+        
+        <button type="submit">Login</button>
+      </form>
+  
+  </div>
+</body>
+</html>
