@@ -45,3 +45,10 @@
   
   .team-member p {
     font-size: 0.
+  }
+
+  @media (max-width: 768px) or (max-height: 768px) {
+    .team-section h2 {
+      font-size: 1.5em;
+    }
+  }
