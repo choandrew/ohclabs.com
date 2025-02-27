@@ -9,6 +9,8 @@
   }
   
   .contact-section h2 {
+    font-family: serif;
+    font-weight: 300;
     font-size: 2.5em;
     color: #3d2b1f; /* Dark brown */
     margin-bottom: 20px;

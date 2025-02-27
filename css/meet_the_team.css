@@ -1,25 +1,39 @@
 .team-section {
     text-align: center;
     width: 100vw;;
+    max-width: 100%;
     padding: 60px 20px;
     padding-top: 0px;
     background-color: #f6f3ec;
+    box-sizing: border-box;
   }
   
   .team-section h2 {
-    font-size: 2.5em;
+    font-family: serif;
+    font-weight: 300;
+    font-size: 3em;
     margin-bottom: 40px;
-    color: #000;
+    color: #36302A;
+  }
+
+  .team-member h3 {
+    font-family: serif;
+    font-weight: 1;
+    font-size: 1.5em;
+    margin: 15px 0 5px;
+    color: #f6f3ec;
   }
 
   .team-member p {
-    color: #000;
+    font-family: sans-serif;
+    font-weight: 1;
+    color: #36302A;
   }
   
   .team-container {
     display: flex;
     justify-content: center;
-    gap: 40px;
+    gap: 100px;
     flex-wrap: wrap;
     max-width: 1200px;
     margin: 0 auto;
@@ -27,7 +41,7 @@
   
   .team-member {
     max-width: 300px;
-    text-align: center;
+    text-align: left;
   }
   
   .team-member img {
@@ -35,11 +49,7 @@
     border-radius: 8px;
   }
   
-  .team-member h3 {
-    font-size: 1.5em;
-    margin: 15px 0 5px;
-    color: #000;
-  }
+
   
   .team-member a {
     display: block;
