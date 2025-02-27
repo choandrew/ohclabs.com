@@ -10,9 +10,12 @@
   .contact-section h2 {
     font-size: 2.5em;
     color: #3d2b1f; /* Dark brown */
-    margin-bottom: 40px;
+    margin-bottom: 20px;
   }
   
+  .contact-section p {
+    color: #3d2b1f; /* Dark brown */
+  }
   /* Contact Form Container */
   .contact-container {
     background-color: #fcf9f5; /* Slightly lighter background */
