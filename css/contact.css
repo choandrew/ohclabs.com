@@ -96,5 +96,6 @@
   @media (max-width: 480px) or (max-height: 480px) {
     .contact-section {
       padding-top: 0px;
+      padding-bottom: 40px;
     }
   }
