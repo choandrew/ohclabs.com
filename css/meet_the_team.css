@@ -25,7 +25,6 @@
   
   .team-member img {
     width: 100%;
-    height: ;
     border-radius: 8px;
   }
   
@@ -49,6 +48,6 @@
 
   @media (max-width: 768px) or (max-height: 768px) {
     .team-section h2 {
-      font-size: 1.5em;
+      font-size: 2em;
     }
   }

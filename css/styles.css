@@ -201,7 +201,7 @@ body {
     /* Adjust layout to prevent overlapping the navbar */
     body {
       /* Switch from centered flex layout to a block layout starting below the navbar */
-      padding-top: 65px;
+      padding-top: 80px;
     }
   
     .navbar {
@@ -226,12 +226,12 @@ body {
   
     /* Reduce h1 size further to keep text in bounds */
     h1 {
-      font-size: 1.8em;
+      font-size: 2.3em;
       margin: 0 0 10px;
     }
   
     p {
-      font-size: 0.85em;
+      font-size: 1.1em;
     }
   
     .buttons button {
