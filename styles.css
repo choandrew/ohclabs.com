@@ -19,7 +19,6 @@ body {
     left: 50%;
     transform: translateX(-50%);
     width: 100%;
-    max-width: 1080px;  /* Maximum width for desktop */
     display: flex;
     justify-content: space-between;
     align-items: center;
