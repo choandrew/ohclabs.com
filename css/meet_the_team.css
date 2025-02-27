@@ -1,13 +1,19 @@
 .team-section {
     text-align: center;
+    width: 100vw;;
     padding: 60px 20px;
     padding-top: 0px;
+    background-color: #f6f3ec;
   }
   
   .team-section h2 {
     font-size: 2.5em;
     margin-bottom: 40px;
-    color: #fff;
+    color: #000;
+  }
+
+  .team-member p {
+    color: #000;
   }
   
   .team-container {
@@ -32,7 +38,7 @@
   .team-member h3 {
     font-size: 1.5em;
     margin: 15px 0 5px;
-    color: #fff;
+    color: #000;
   }
   
   .team-member a {
@@ -43,9 +49,6 @@
     margin-bottom: 10px;
   }
   
-  .team-member p {
-    font-size: 0.
-  }
 
   @media (max-width: 768px) or (max-height: 768px) {
     .team-section h2 {
