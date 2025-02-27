@@ -9,8 +9,7 @@ body {
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    height: 80vh;
-    overflow: hidden;
+    padding-top: 80px;
   }
   
   .navbar {
@@ -71,6 +70,15 @@ body {
     font-size: 1em;
     cursor: pointer;
     transition: background 0.3s;
+  }
+
+  .buttons a {
+    text-decoration: none;
+    color: #003b36;
+  }
+
+  .buttons a:active {
+    color: inherit;
   }
   
   .buttons button:hover {
@@ -133,8 +141,7 @@ body {
   @media (max-width: 768px) or (max-height: 768px) {
     body {
       /* Optionally adjust body padding if needed */
-      padding: 20px;
-      height: 60vh;
+      padding-top: 60px;
     }
   
     .navbar {
@@ -193,7 +200,7 @@ body {
     /* Adjust layout to prevent overlapping the navbar */
     body {
       /* Switch from centered flex layout to a block layout starting below the navbar */
-      height: 55vh;
+      padding-top: 65px;
     }
   
     .navbar {
