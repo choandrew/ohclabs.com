@@ -21,7 +21,6 @@
   .contact-container {
     background-color: #fcf9f5; /* Slightly lighter background */
     width: min(80%, 800px);
-    min-width: 300px;
     padding: 40px;
     margin: 0 auto;
     border-radius: 10px;
