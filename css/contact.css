@@ -15,6 +15,7 @@
   
   .contact-section p {
     color: #3d2b1f; /* Dark brown */
+    font-size: 1em;
   }
   /* Contact Form Container */
   .contact-container {
