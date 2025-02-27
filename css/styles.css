@@ -102,6 +102,7 @@ body {
     position: relative;
     width: 280px;
     height: 150px;
+    overflow: hidden;
   }
   
   .wheel {

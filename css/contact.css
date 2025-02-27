@@ -3,7 +3,8 @@
     text-align: center;
     background-color: #f0e8dd; /* Light beige background */
     padding: 50px 20px;
-    width: 100vw;
+    width: 100%;
+    box-sizing: border-box;
   }
   
   .contact-section h2 {
@@ -15,6 +16,8 @@
   /* Contact Form Container */
   .contact-container {
     background-color: #fcf9f5; /* Slightly lighter background */
+    width: min(80%, 800px);
+    min-width: 300px;
     padding: 40px;
     margin: 0 auto;
     border-radius: 10px;
@@ -52,6 +55,7 @@
   /* Input Fields */
   input, textarea {
     width: 100%;
+    max-width: 100%;
     padding: 12px;
     border: none;
     background-color: #f5efe9;
