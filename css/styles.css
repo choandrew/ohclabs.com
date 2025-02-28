@@ -2,7 +2,7 @@ body {
   margin: 0;
   padding: 0;
   font-family: 'Arial', sans-serif;
-  background: #a37800;
+  background: #201d1b;
   color: #ffffff;
   display: flex;
   flex-direction: column;
@@ -23,13 +23,14 @@ body {
   background: rgba(0, 0, 0, 0.3);
   z-index: 1000; /* Ensure the navbar is on top */
   box-sizing: border-box;
+  padding-left: min(10%, 100px);
+  padding-right: min(10%, 100px);
 }
 
 .navbar .logo {
   font-family: serif;
   font-weight: 100;;
   font-size: 2em;  /* Logo text size */
-  padding-left: min(10%, 540px);
 }
 
 .navbar a {
@@ -41,8 +42,13 @@ body {
 .navbar .button {
   background: transparent;
   color: #fff;
+  font-size: 1.2em;
   padding: 8px 16px;
   border-radius: 10px;
+}
+
+.navbar .button:hover {
+  background: #525454;
 }
 
 .content {
@@ -153,7 +159,7 @@ canvas {
   top: 10%;
   z-index: -1;
   pointer-events: none;
-  background: transparent;
+  background: ;
 }
 
 /* Responsive Styles */

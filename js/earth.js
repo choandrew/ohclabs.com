@@ -189,12 +189,3 @@ window.addEventListener('resize', () => {
     earthPivot.position.y = 0.3;
 }
 });
-
-window.addEventListener('scroll', () => {
-    // Get the current scroll offset
-    const scrollY = window.scrollY || document.documentElement.scrollTop;
-    // Adjust the factor (0.005 in this example) to control the speed
-    const scrollFactor = 0.005;
-    
-    earthPivot.position.y = initialEarthY + scrollY * scrollFactor;
-  });
