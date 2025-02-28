@@ -6,8 +6,6 @@ const tiltRadians = THREE.MathUtils.degToRad(tiltDegrees);
 // This yields a vector with y = cos(tiltRadians) and z = sin(tiltRadians)
 const configSpinAxis = new THREE.Vector3(0, Math.cos(tiltRadians), Math.sin(tiltRadians)).normalize();
 
-let isMobile = window.innerWidth < 600;
-
 // === SCENE SETUP ===
 const scene = new THREE.Scene();
 const camera = new THREE.PerspectiveCamera(
@@ -18,9 +16,12 @@ const camera = new THREE.PerspectiveCamera(
 );
 camera.position.z = 12;
 
+const earthPivotY = -1;
+const earthPivotYMobile = -5;
+
 const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
 
-if (isMobile) {
+if (window.innerWidth < 600) {
     renderer.setSize(window.innerWidth, window.innerHeight);
 } else {
     const multiplier = 1.3;
@@ -164,10 +165,13 @@ function animate() {
   
   renderer.render(scene, camera);
 
-  if (isMobile) {
-    earthPivot.position.y = -3.3;
+  if (window.innerWidth < 600) {
+    renderer.setSize(window.innerWidth, window.innerHeight);
+    earthPivot.position.y = earthPivotYMobile;
   } else {
-    earthPivot.position.y = 0.4;
+      const multiplier = 1.3;
+      renderer.setSize(window.innerWidth * multiplier, window.innerHeight * multiplier);
+      earthPivot.position.y = earthPivotY;
   }
 }
 animate();
@@ -179,13 +183,12 @@ window.addEventListener('resize', () => {
   camera.aspect = window.innerWidth / window.innerHeight;
   camera.updateProjectionMatrix();
 
-  isMobile = window.innerWidth < 600;
-  if (isMobile) {
+  if (window.innerWidth < 600) {
     renderer.setSize(window.innerWidth, window.innerHeight);
-    earthPivot.position.y = -3.3;
+    earthPivot.position.y = earthPivotYMobile;
 } else {
     const multiplier = 1.3;
     renderer.setSize(window.innerWidth * multiplier, window.innerHeight * multiplier);
-    earthPivot.position.y = 0.3;
+    earthPivot.position.y = earthPivotY;
 }
 });

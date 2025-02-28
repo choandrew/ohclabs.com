@@ -42,13 +42,15 @@ body {
 .navbar .button {
   background: transparent;
   color: #fff;
+  font-family: serif;
   font-size: 1.2em;
   padding: 8px 16px;
+  background: #525857;
   border-radius: 10px;
 }
 
 .navbar .button:hover {
-  background: #525454;
+  background: #765107f5;
 }
 
 .content {
@@ -94,7 +96,7 @@ p {
 }
 
 .buttons button:hover {
-  background: #8de2dd;
+  background: #765107f5;
 }
 
 .wrapper {
@@ -156,10 +158,9 @@ p {
 
 canvas {
   position: fixed;
-  top: 10%;
+  top: 0%;
   z-index: -1;
   pointer-events: none;
-  background: ;
 }
 
 /* Responsive Styles */
@@ -229,14 +230,7 @@ canvas {
   }
 
   .navbar {
-    flex-direction: column;
-    padding-top: 5px;
-    padding-bottom: 20px;
-  }
-
-  .navbar .logo {
-    margin-bottom: 10px;
-    padding-left: 0;
+    padding-bottom: 15px;
   }
 
   .navbar a {
