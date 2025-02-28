@@ -165,7 +165,6 @@ function animate() {
   renderer.render(scene, camera);
 
   if (isMobile) {
-    earthPivot.position.x = 2;
     earthPivot.position.y = -2;
   } else {
     earthPivot.position.y = 0.4;
@@ -183,7 +182,6 @@ window.addEventListener('resize', () => {
   isMobile = window.innerWidth < 600;
   if (isMobile) {
     renderer.setSize(window.innerWidth, window.innerHeight);
-    earthPivot.position.x = 2;
     earthPivot.position.y = -2;
 } else {
     const multiplier = 1.3;
@@ -191,3 +189,12 @@ window.addEventListener('resize', () => {
     earthPivot.position.y = 0.3;
 }
 });
+
+window.addEventListener('scroll', () => {
+    // Get the current scroll offset
+    const scrollY = window.scrollY || document.documentElement.scrollTop;
+    // Adjust the factor (0.005 in this example) to control the speed
+    const scrollFactor = 0.005;
+    
+    earthPivot.position.y = initialEarthY + scrollY * scrollFactor;
+  });
