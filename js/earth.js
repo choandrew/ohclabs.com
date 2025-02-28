@@ -128,7 +128,7 @@ function addNewArc() {
   arcs.push(arcLine);
   
   // Limit to a maximum of 10 arcs: remove the oldest if necessary.
-  if (arcs.length > 30) {
+  if (arcs.length > 40) {
     const oldestArc = arcs.shift();
     earth.remove(oldestArc);
     oldestArc.geometry.dispose();
@@ -137,7 +137,7 @@ function addNewArc() {
 }
 
 // Create a new arc every 2 seconds.
-setInterval(addNewArc, 200);
+setInterval(addNewArc, 150);
 
 // === ANIMATION LOOP ===
 function animate() {
