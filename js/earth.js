@@ -165,7 +165,7 @@ function animate() {
   renderer.render(scene, camera);
 
   if (isMobile) {
-    earthPivot.position.y = -2;
+    earthPivot.position.y = -3.3;
   } else {
     earthPivot.position.y = 0.4;
   }
@@ -182,7 +182,7 @@ window.addEventListener('resize', () => {
   isMobile = window.innerWidth < 600;
   if (isMobile) {
     renderer.setSize(window.innerWidth, window.innerHeight);
-    earthPivot.position.y = -2;
+    earthPivot.position.y = -3.3;
 } else {
     const multiplier = 1.3;
     renderer.setSize(window.innerWidth * multiplier, window.innerHeight * multiplier);
