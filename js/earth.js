@@ -4,7 +4,7 @@ const tiltDegrees = 190;
 const tiltRadians = THREE.MathUtils.degToRad(tiltDegrees);
 // Compute the configurable spin axis: starting from (0,1,0) tilt toward the viewer along -z.
 // This yields a vector with y = cos(tiltRadians) and z = sin(tiltRadians)
-const configSpinAxis = new THREE.Vector3(0, Math.cos(tiltRadians), Math.sin(tiltRadians) -1).normalize();
+const configSpinAxis = new THREE.Vector3(0, Math.cos(tiltRadians), Math.sin(tiltRadians)).normalize();
 
 // === SCENE SETUP ===
 const scene = new THREE.Scene();
@@ -18,6 +18,7 @@ camera.position.z = 12;
 
 const renderer = new THREE.WebGLRenderer({ antialias: true });
 renderer.setSize(window.innerWidth, window.innerHeight);
+renderer.setClearColor(0x000000, 0);
 document.body.appendChild(renderer.domElement);
 
 // === EARTH SETUP ===
@@ -128,7 +129,7 @@ function addNewArc() {
   arcs.push(arcLine);
   
   // Limit to a maximum of 10 arcs: remove the oldest if necessary.
-  if (arcs.length > 40) {
+  if (arcs.length > 50) {
     const oldestArc = arcs.shift();
     earth.remove(oldestArc);
     oldestArc.geometry.dispose();
