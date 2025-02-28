@@ -16,8 +16,8 @@ const camera = new THREE.PerspectiveCamera(
 );
 camera.position.z = 12;
 
-const earthPivotY = -0.25;
-const earthPivotYMobile = -5;
+const earthPivotY = -0.9;
+const earthPivotYMobile = -5.3;
 
 const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
 
