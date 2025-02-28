@@ -1,3 +1,4 @@
+
 .team-section {
     text-align: center;
     width: 100vw;;
@@ -10,7 +11,7 @@
   
   .team-section h2 {
     font-family: serif;
-    font-weight: 300;
+    font-weight: 100;
     font-size: 3em;
     margin-bottom: 40px;
     color: #36302A;
@@ -18,15 +19,15 @@
 
   .team-member h3 {
     font-family: serif;
-    font-weight: 1;
+    font-weight: 100;
     font-size: 1.5em;
-    margin: 15px 0 5px;
-    color: #f6f3ec;
+    margin: 5px 0 5px;
+    color: #36302A;
   }
 
   .team-member p {
     font-family: sans-serif;
-    font-weight: 1;
+    font-weight: 100;
     color: #36302A;
   }
   
@@ -46,16 +47,15 @@
   
   .team-member img {
     width: 100%;
-    border-radius: 8px;
+    border-radius: 5px;
   }
   
 
   
   .team-member a {
     display: block;
-    color: #0073b1;
-    text-decoration: none;
-    font-weight: bold;
+    color: #36302A;
+    font-weight: 100;
     margin-bottom: 10px;
   }
   

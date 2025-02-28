@@ -104,11 +104,15 @@ body {
   }
   
   .static {
+    font-family: serif;
+    font-weight: 100;
     color: #ffffff;
     margin: 0 10px;
   }
   
   .dynamic {
+    font-family: serif;
+    font-weight: 100;
     position: relative;
     width: 280px;
     height: 150px;
