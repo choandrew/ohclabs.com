@@ -1,3 +1,11 @@
+// === CONFIGURABLE PARAMETERS ===
+// Earth's axial tilt in degrees (for example, 23.5° for realistic Earth)
+const tiltDegrees = 190;
+const tiltRadians = THREE.MathUtils.degToRad(tiltDegrees);
+// Compute the configurable spin axis: starting from (0,1,0) tilt toward the viewer along -z.
+// This yields a vector with y = cos(tiltRadians) and z = sin(tiltRadians)
+const configSpinAxis = new THREE.Vector3(0, Math.cos(tiltRadians), Math.sin(tiltRadians) -1).normalize();
+
 // === SCENE SETUP ===
 const scene = new THREE.Scene();
 const camera = new THREE.PerspectiveCamera(
@@ -13,12 +21,28 @@ renderer.setSize(window.innerWidth, window.innerHeight);
 document.body.appendChild(renderer.domElement);
 
 // === EARTH SETUP ===
+// Load Earth texture
 const textureLoader = new THREE.TextureLoader();
-const earthTexture = textureLoader.load('pics/earth.jpg'); // Ensure correct path
+const earthTexture = textureLoader.load('pics/earth.jpg'); // Ensure the path is correct
+
+// Create Earth geometry (default poles along Y)
 const sphereGeometry = new THREE.SphereGeometry(5, 64, 64);
 const sphereMaterial = new THREE.MeshPhongMaterial({ map: earthTexture });
 const earth = new THREE.Mesh(sphereGeometry, sphereMaterial);
-scene.add(earth);
+
+// Reorient the Earth so that its natural poles lie along the Z axis.
+// (Rotate -90° about X: the original Y axis becomes the Z axis.)
+earth.rotation.x = -Math.PI / 2;
+
+// Create a pivot group and add the Earth to it.
+const earthPivot = new THREE.Group();
+earthPivot.add(earth);
+scene.add(earthPivot);
+
+// Align the pivot's local Z axis (default (0,0,1)) with our desired spin axis.
+const defaultZ = new THREE.Vector3(0, 0, 1);
+const alignQuat = new THREE.Quaternion().setFromUnitVectors(defaultZ, configSpinAxis);
+earthPivot.quaternion.copy(alignQuat);
 
 // === LIGHTS ===
 const ambientLight = new THREE.AmbientLight(0xffffff, 0.5);
@@ -36,7 +60,7 @@ function toCameraSpace(localPoint) {
   return worldPoint.applyMatrix4(camera.matrixWorldInverse);
 }
 
-// Returns a random point on the Earth's surface (in Earth‑local space).
+// Returns a random point on Earth's surface (in Earth‑local coordinates).
 function randomSurfacePointLocal() {
   const theta = Math.random() * Math.PI * 2;
   const phi = Math.random() * Math.PI;
@@ -46,7 +70,7 @@ function randomSurfacePointLocal() {
   return new THREE.Vector3(x, y, z);
 }
 
-// Keeps picking until the point is on the visible (front) side.
+// Returns a random point on Earth's surface that is visible (in front of the camera).
 function randomVisibleSurfacePoint() {
   let p, camPos;
   do {
@@ -56,22 +80,21 @@ function randomVisibleSurfacePoint() {
   return p;
 }
 
-// === ARC / RAY CREATION ===
-
+// === ARC / BEAM CREATION ===
 // Creates a quadratic Bézier arc connecting two Earth‑local visible points.
 function createArc(startPoint, endPoint) {
-  // Compute control point as the midpoint, lifted above the surface.
+  // Compute control point as the midpoint lifted above the surface.
   const mid = startPoint.clone().add(endPoint).multiplyScalar(0.5);
-  const lift = 2; // How high to lift the midpoint
+  const lift = 2; // How high to lift the midpoint above the surface
   mid.normalize().multiplyScalar(5 + lift);
-
-  // Ensure the control point is visible
+  
+  // Ensure the control point is visible.
   const midCam = toCameraSpace(mid);
   if (midCam.z >= 0) {
     mid.setZ(-Math.abs(mid.z));
   }
-
-  // Create the Bézier curve and sample points along it.
+  
+  // Create the quadratic Bézier curve and sample points along it.
   const curve = new THREE.QuadraticBezierCurve3(startPoint, mid, endPoint);
   const segments = 50;
   const points = curve.getPoints(segments);
@@ -88,12 +111,13 @@ function createArc(startPoint, endPoint) {
   });
   
   const line = new THREE.Line(geometry, material);
-  // Add the arc in Earth‑local space so it rotates with the globe.
+  // Add the arc as a child of Earth so it rotates correctly.
   earth.add(line);
   return line;
 }
 
-// Array to keep track of arcs (maximum 10 visible).
+// === BEAM MANAGEMENT ===
+// Array to store arcs (beams)
 const arcs = [];
 
 // Adds a new arc connecting two random visible points.
@@ -101,12 +125,10 @@ function addNewArc() {
   const startPoint = randomVisibleSurfacePoint();
   const endPoint = randomVisibleSurfacePoint();
   const arcLine = createArc(startPoint, endPoint);
-  
-  // Store the new arc.
   arcs.push(arcLine);
   
-  // If more than 10 arcs, remove and dispose the oldest one.
-  if (arcs.length > 40) {
+  // Limit to a maximum of 10 arcs: remove the oldest if necessary.
+  if (arcs.length > 30) {
     const oldestArc = arcs.shift();
     earth.remove(oldestArc);
     oldestArc.geometry.dispose();
@@ -115,16 +137,16 @@ function addNewArc() {
 }
 
 // Create a new arc every 2 seconds.
-setInterval(addNewArc, 500);
-setInterval(addNewArc, 500);
-setInterval(addNewArc, 500);
+setInterval(addNewArc, 200);
 
 // === ANIMATION LOOP ===
 function animate() {
   requestAnimationFrame(animate);
   
-  // Rotate Earth continuously.
-  earth.rotation.y += 0.005;
+  // Spin the pivot group about its local Z axis (which is now aligned with configSpinAxis).
+  const spinSpeed = 0.005;
+  earthPivot.rotateOnAxis(new THREE.Vector3(0, 0, 1), spinSpeed);
+  
   renderer.render(scene, camera);
 }
 animate();
