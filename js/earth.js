@@ -6,6 +6,8 @@ const tiltRadians = THREE.MathUtils.degToRad(tiltDegrees);
 // This yields a vector with y = cos(tiltRadians) and z = sin(tiltRadians)
 const configSpinAxis = new THREE.Vector3(0, Math.cos(tiltRadians), Math.sin(tiltRadians)).normalize();
 
+let isMobile = window.innerWidth < 600;
+
 // === SCENE SETUP ===
 const scene = new THREE.Scene();
 const camera = new THREE.PerspectiveCamera(
@@ -17,7 +19,13 @@ const camera = new THREE.PerspectiveCamera(
 camera.position.z = 12;
 
 const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
-renderer.setSize(window.innerWidth, window.innerHeight);
+
+if (isMobile) {
+    renderer.setSize(window.innerWidth, window.innerHeight);
+} else {
+    const multiplier = 1.3;
+    renderer.setSize(window.innerWidth * multiplier, window.innerHeight * multiplier);
+}
 renderer.setClearColor(0x000000, 0);
 document.body.appendChild(renderer.domElement);
 
@@ -28,7 +36,13 @@ const earthTexture = textureLoader.load('pics/earth.jpg'); // Ensure the path is
 
 // Create Earth geometry (default poles along Y)
 const sphereGeometry = new THREE.SphereGeometry(5, 64, 64);
-const sphereMaterial = new THREE.MeshPhongMaterial({ map: earthTexture });
+let sphereMaterial;
+if (window.innerWidth < 600) {
+    sphereMaterial = new THREE.MeshPhongMaterial({ map: earthTexture, transparent: true, opacity: 0.3 });
+} else {
+    sphereMaterial = new THREE.MeshPhongMaterial({ map: earthTexture, transparent: true, opacity: 0.7 });
+}
+
 const earth = new THREE.Mesh(sphereGeometry, sphereMaterial);
 
 // Reorient the Earth so that its natural poles lie along the Z axis.
@@ -86,7 +100,7 @@ function randomVisibleSurfacePoint() {
 function createArc(startPoint, endPoint) {
   // Compute control point as the midpoint lifted above the surface.
   const mid = startPoint.clone().add(endPoint).multiplyScalar(0.5);
-  const lift = 2; // How high to lift the midpoint above the surface
+  const lift = 2.5; // How high to lift the midpoint above the surface
   mid.normalize().multiplyScalar(5 + lift);
   
   // Ensure the control point is visible.
@@ -149,12 +163,31 @@ function animate() {
   earthPivot.rotateOnAxis(new THREE.Vector3(0, 0, 1), spinSpeed);
   
   renderer.render(scene, camera);
+
+  if (isMobile) {
+    earthPivot.position.x = 2;
+    earthPivot.position.y = -2;
+  } else {
+    earthPivot.position.y = 0.4;
+  }
 }
 animate();
 
 // === HANDLE RESIZING ===
 window.addEventListener('resize', () => {
+
   renderer.setSize(window.innerWidth, window.innerHeight);
   camera.aspect = window.innerWidth / window.innerHeight;
   camera.updateProjectionMatrix();
+
+  isMobile = window.innerWidth < 600;
+  if (isMobile) {
+    renderer.setSize(window.innerWidth, window.innerHeight);
+    earthPivot.position.x = 2;
+    earthPivot.position.y = -2;
+} else {
+    const multiplier = 1.3;
+    renderer.setSize(window.innerWidth * multiplier, window.innerHeight * multiplier);
+    earthPivot.position.y = 0.3;
+}
 });
