@@ -28,6 +28,7 @@ if (window.innerWidth < 600) {
     renderer.setSize(window.innerWidth * multiplier, window.innerHeight * multiplier);
 }
 renderer.setClearColor(0x000000, 0);
+renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
 document.body.appendChild(renderer.domElement);
 
 // === EARTH SETUP ===
@@ -166,11 +167,8 @@ function animate() {
   renderer.render(scene, camera);
 
   if (window.innerWidth < 600) {
-    renderer.setSize(window.innerWidth, window.innerHeight);
     earthPivot.position.y = earthPivotYMobile;
   } else {
-      const multiplier = 1.3;
-      renderer.setSize(window.innerWidth * multiplier, window.innerHeight * multiplier);
       earthPivot.position.y = earthPivotY;
   }
 }
